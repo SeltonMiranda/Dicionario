@@ -60,22 +60,3 @@ int palavraValida(char *p) {
         return 0;
     return 1;
 }
-
-char *trim(char *str)
-{
-    char *end;
-    while (isspace((unsigned char)*str)) str++;
-    if (*str == 0) return str;
-
-    end = str + strlen(str) - 1;
-    while (end > str && isspace((unsigned char)*end)) end--;
-    end[1] = '\0';
-
-    return str;
-}
-
-void toLowerCase(char *str)
-{
-    for (; *str != '\0'; ++str) *str = tolower(*str);
-}
-

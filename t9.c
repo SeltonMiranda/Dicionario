@@ -1,3 +1,9 @@
+/**************************************
+ * Arquivo principal que implementa o projeto especificado no enunciado.
+ * Autores: Selton Miranda Rolim (GRR20235688) e Gabriel Carloto Nowak (GRR20235686).
+***************************************/
+
+
 #include "trie.h"
 #include "utils.h"
 
@@ -6,9 +12,7 @@
 
 #define MAX_TAM 50
 
-int main(int argc, char **argv)
-{
-
+int main(int argc, char **argv) {
   if (argc != 2) {
     fprintf(stderr, "Forneça apenas o arquivo txt.\n");
     return 1;
@@ -28,6 +32,7 @@ int main(int argc, char **argv)
 
   if (ferror(dicionario)) {
     fprintf(stderr, "Não foi possível ler o arquivo.\n");
+    destroiArv(arv);
     fclose(dicionario);
     return 1;
   }
