@@ -46,6 +46,21 @@ int charToDigit(char c)
     }
 }
 
+int contains(char *digitos, char *fonte)
+{
+    for (size_t i = 0; i < strlen(digitos); i++) {
+        if (strchr(fonte, digitos[i]))
+            return 1;
+    }
+    return 0;
+}
+
+int palavraValida(char *p) {
+    if (contains("?!,./:;@$&*%^()-_+=|[]{}\"\'\abcdefghijklmnopqrstuvwxyz01ABCDEFGHIJKLMNOPQRSTUVWXYZ ", p)) 
+        return 0;
+    return 1;
+}
+
 char *trim(char *str)
 {
     char *end;

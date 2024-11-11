@@ -44,7 +44,7 @@ static void insereLista(Trie *raiz, char *palavra) {
         
     atual = criaNodo(palavra);
     if (atual == NULL) {
-        fprintf(stderr, "ERROR: Couldn't allocate mem for node %s\n", palavra);
+        fprintf(stderr, "ERRO: Nao foi possivel alocar memoria para o nodo %s\n", palavra);
         return;
     }
     anterior->prox[HASHTAG] = atual;
@@ -64,7 +64,7 @@ static Trie insereR(Trie *raiz, char *palavra, char *c) {
         if (*raiz == NULL) { // Caso em que chegou em um nodo nulo
             *raiz = criaNodo(palavra);
             if (*raiz == NULL) {
-                fprintf(stderr, "ERROR: Couldn't allocate memory for node %s\n", palavra);
+                fprintf(stderr, "ERRO: Nao foi possivel alocar memoria para o nodo %s\n", palavra);
                 return NULL;
             }
         } else {
@@ -84,7 +84,7 @@ static Trie insereR(Trie *raiz, char *palavra, char *c) {
     if (*raiz == NULL) {
         *raiz = criaNodo(NULL);
         if (*raiz == NULL) {
-                fprintf(stderr, "ERROR: Couldn't allocate memory for node\n");
+                fprintf(stderr, "ERRO: Nao foi possivel alocar memoria para o nodo\n");
                 return NULL;
         }
     }
@@ -130,7 +130,7 @@ void imprimeArv(Trie raiz, int profundidade) {
 static char *buscaR(Trie *raiz, char *c) {
     
     if (*raiz == NULL)
-	return NULL;
+	    return NULL;
 
     if (*c == '\0') {
         if (*raiz != NULL) {
@@ -153,16 +153,10 @@ static char *buscaR(Trie *raiz, char *c) {
 }
 
 char *buscaPalavra(Trie *raiz, char *palavra) {
-    // Verificar se a palavra possui somente dígitos e #
-    if (*raiz == NULL) {
-        fprintf(stderr, "A árvore está vazia.\n");
+    if (*raiz == NULL) 
         return NULL;
-    }
 
-    char *p = buscaR(raiz, palavra);
-    if (p == NULL)
-        fprintf(stderr, "palavra nao encontrada\n");
-    return p;
+    return buscaR(raiz, palavra);
 }
 
 void destroiArv(Trie raiz) {

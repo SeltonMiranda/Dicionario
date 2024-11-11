@@ -6,60 +6,67 @@
 
 #define MAX_TAM 50
 
-int main(int argc, char **argv) {
-    
-    if ( argc != 2 ) {
-        fprintf(stderr, "Forneça apenas o arquivo txt.\n");
-	return 1;
+int main(int argc, char **argv)
+{
+
+  if (argc != 2) {
+    fprintf(stderr, "Forneça apenas o arquivo txt.\n");
+    return 1;
+  }
+
+  FILE *dicionario = fopen(argv[1], "r");
+  if (dicionario == NULL) {
+    fprintf(stderr, "Não foi possível abrir o arquivo.\n");
+    return 1;
+  }
+
+  char palavra[MAX_TAM];
+  Trie arv;
+  criaArv(&arv);
+  while (fscanf(dicionario, "%49s", palavra) == 1)
+    insereArv(&arv, palavra);
+
+  if (ferror(dicionario)) {
+    fprintf(stderr, "Não foi possível ler o arquivo.\n");
+    fclose(dicionario);
+    return 1;
+  }
+
+  fclose(dicionario);
+
+  char busca[MAX_TAM * 2];
+  scanf("%s", busca);
+  char anterior[MAX_TAM * 2];
+
+  while (strlen(busca) != 1 || busca[0] != '0') {
+
+    int valido = 1;
+    if (!palavraValida(busca)) {
+      printf("entrada invalida\n");
+      valido = 0;
     }
-   
-    FILE *dicionario = fopen(argv[1], "r");
-    if ( dicionario == NULL ) {
-        fprintf(stderr, "Não foi possível abrir o arquivo.\n");
-	return 1;
+
+    if (busca[0] == '#') {
+      strcat(anterior, busca);
+      char *word = buscaPalavra(&arv, anterior);
+      if (!word)
+        printf("palavra nao encontrada\n");
+      else
+        printf("%s\n", word);
     }
 
-    char palavra[MAX_TAM];
-    Trie arv;
-    criaArv(&arv);
-    while ( fscanf(dicionario, "%49s", palavra) == 1 )
-	insereArv( &arv, palavra );
+    if (valido && busca[0] != '#') {
+      char *word = buscaPalavra(&arv, busca);
+      if (!word)
+        printf("palavra nao encontrada\n");
+      else 
+        printf("%s\n", word);
 
-    fclose( dicionario );
-
-    char busca[MAX_TAM * 2];
+      strcpy(anterior, busca);
+    }
     scanf("%s", busca);
-    char anterior[MAX_TAM * 2];
+  }
 
-    while ( strlen(busca) != 1 || busca[0] != '0' ) {
-    	
-	char *teste = busca;
-	int saiu = 0;
-
-        while ( *teste != '\0' && !saiu ) {
-	    if ( *teste == '0' ) {
-		printf("entrada invalida\n");
-		saiu = 1;
-	    }
-	    ++teste;
-        }
-
-	if ( busca[0] == '#' ) {
-            strcat( anterior, busca );
-	    char *word = buscaPalavra( &arv, anterior );
-	    if ( word )
-		printf("%s\n", word);
-	}
-
-	if ( !saiu && busca[0] != '#' ) {
-            char *word = buscaPalavra( &arv, busca );
-	    if ( word )
-	        printf("%s\n", word);
-	    strcpy( anterior, busca );
-	}
-        scanf("%s", busca);
-    }
-
-    destroiArv(arv);
-    return 0;
+  destroiArv(arv);
+  return 0;
 }

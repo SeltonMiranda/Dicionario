@@ -14,6 +14,10 @@
  **/
 int charToDigit(char c);
 
+int contains(char *digitos, char *fonte);
+
+int palavraValida(char *p);
+
 /**
  * Retira espaços em branco de uma string.
  * @param str: Ponteiro para a string. 
@@ -27,4 +31,4 @@ char *trim(char *str);
  **/
 void toLowerCase(char *str);
 
-#endif /* __UTILS__ */ 
+#endif /*  __UTILS__  */ 
