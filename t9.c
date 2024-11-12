@@ -45,29 +45,27 @@ int main(int argc, char **argv) {
 
   while (strlen(busca) != 1 || busca[0] != '0') {
 
-    int valido = 1;
-    if (!palavraValida(busca)) {
+    if ( !palavraValida(busca) )
       printf("entrada invalida\n");
-      valido = 0;
-    }
 
-    if (busca[0] == '#') {
-      strcat(anterior, busca);
-      char *word = buscaPalavra(&arv, anterior);
-      if (!word)
-        printf("palavra nao encontrada\n");
-      else
-        printf("%s\n", word);
-    }
+    else {
+      if ( busca[0] == '#' ) {
+        strcat(anterior, busca);
+        char *word = buscaPalavra(&arv, anterior);
+        if (!word)
+          printf("palavra nao encontrada\n");
+        else
+          printf("%s\n", word);
+      } 
+      else {
+        char *word = buscaPalavra(&arv, busca);
+        if (!word)
+          printf("palavra nao encontrada\n");
+        else 
+          printf("%s\n", word);
 
-    if (valido && busca[0] != '#') {
-      char *word = buscaPalavra(&arv, busca);
-      if (!word)
-        printf("palavra nao encontrada\n");
-      else 
-        printf("%s\n", word);
-
-      strcpy(anterior, busca);
+        strcpy(anterior, busca);
+      }
     }
     scanf("%s", busca);
   }
