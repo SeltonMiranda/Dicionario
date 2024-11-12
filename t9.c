@@ -27,8 +27,14 @@ int main(int argc, char **argv) {
   char palavra[MAX_TAM];
   Trie arv;
   criaArv(&arv);
-  while (fscanf(dicionario, "%49s", palavra) == 1)
-    insereArv(&arv, palavra);
+  while (fscanf(dicionario, "%49s", palavra) == 1) {
+    arv = insereArv(&arv, palavra);
+    if (arv == NULL) {
+      destroiArv(arv);
+      fclose(dicionario);
+      return 1;
+    }
+  }
 
   if (ferror(dicionario)) {
     fprintf(stderr, "Não foi possível ler o arquivo.\n");

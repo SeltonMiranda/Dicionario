@@ -31,15 +31,9 @@ void criaArv(Trie *raiz);
  * Insere uma palavra na Trie. A palavra deve conter apenas letras.
  * @param raiz: Ponteiro para a raiz da árvore.
  * @param palavra: Ponteiro para a palavra a ser inserida na Trie. 
+ * @return Trie: Raiz da nova arvore.
  **/
-void insereArv(Trie *raiz, char *palavra);
-
-/**
- * Imprime o conteúdo da árvore. Essa função será descartada, assim que terminar o trabalho.
- * @param raiz: Ponteiro para a raiz da árvore.
- * @param profundidade: Nível da árvore que o nodo está. 
- **/
-void imprimeArv(Trie raiz, int profundidade);
+Trie insereArv(Trie *raiz, char *palavra);
 
 /**
  * Destrói a Trie, liberando todos os seus nodos.
