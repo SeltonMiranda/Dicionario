@@ -7,10 +7,10 @@
 #ifndef __TRIE__
 #define __TRIE__
 
-// (0...9) + #
+/* (0...9) + # */
 #define RANGE 11
 
-// Posição do hashtag no vetor
+/* Posição do hashtag no vetor */
 #define HASHTAG 10
 
 typedef struct Nodo *ApNodo;
