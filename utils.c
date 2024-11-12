@@ -58,5 +58,7 @@ int contains(char *digitos, char *fonte)
 int palavraValida(char *p) {
     if (contains("?!,./:;@$&*%^()-_+=|[]{}\"\'\abcdefghijklmnopqrstuvwxyz01ABCDEFGHIJKLMNOPQRSTUVWXYZ ", p)) 
         return 0;
+    if ( p[0] == '#' && contains("23456789", p) )
+        return 0;
     return 1;
 }
