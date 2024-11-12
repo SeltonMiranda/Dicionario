@@ -45,35 +45,28 @@ int main(int argc, char **argv) {
 
   fclose(dicionario);
 
-  char busca[MAX_TAM * 2];
-  scanf("%s", busca);
-  char anterior[MAX_TAM * 2];
+  char anterior[MAX_TAM * 2], input[MAX_TAM * 2];
+  char *busca;
+  scanf("%s", input);
+  while (strlen(input) != 1 || input[0] != '0') {
 
-  while (strlen(busca) != 1 || busca[0] != '0') {
-
-    if ( !palavraValida(busca) )
+    if ( !palavraValida(input) ) {
       printf("entrada invalida\n");
-
-    else {
-      if ( busca[0] == '#' ) {
-        strcat(anterior, busca);
-        char *word = buscaPalavra(&arv, anterior);
-        if (!word)
-          printf("palavra nao encontrada\n");
-        else
-          printf("%s\n", word);
-      } 
-      else {
-        char *word = buscaPalavra(&arv, busca);
-        if (!word)
-          printf("palavra nao encontrada\n");
-        else 
-          printf("%s\n", word);
-
+    } else {
+      if ( input[0] == '#' ) busca = strcat(anterior, input);
+      else busca = input;
+      
+      char *word = buscaPalavra(&arv, busca);
+      if (!word)
+        printf("palavra nao encontrada\n");
+      else
+        printf("%s\n", word);
+      
+      if (busca != anterior) 
         strcpy(anterior, busca);
-      }
     }
-    scanf("%s", busca);
+
+    scanf("%s", input);
   }
 
   destroiArv(arv);
