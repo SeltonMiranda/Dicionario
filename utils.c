@@ -46,21 +46,17 @@ int charToDigit(char c)
     }
 }
 
-char *trim(char *str)
+int contains(char *digitos, char *fonte)
 {
-    char *end;
-    while (isspace((unsigned char)*str)) str++;
-    if (*str == 0) return str;
-
-    end = str + strlen(str) - 1;
-    while (end > str && isspace((unsigned char)*end)) end--;
-    end[1] = '\0';
-
-    return str;
+    for (size_t i = 0; i < strlen(digitos); i++) {
+        if (strchr(fonte, digitos[i]))
+            return 1;
+    }
+    return 0;
 }
 
-void toLowerCase(char *str)
-{
-    for (; *str != '\0'; ++str) *str = tolower(*str);
+int palavraValida(char *p) {
+    if (contains("?!,./:;@$&*%^()-_+=|[]{}\"\'\abcdefghijklmnopqrstuvwxyz01ABCDEFGHIJKLMNOPQRSTUVWXYZ ", p)) 
+        return 0;
+    return 1;
 }
-

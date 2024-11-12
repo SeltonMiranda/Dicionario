@@ -15,16 +15,18 @@
 int charToDigit(char c);
 
 /**
- * Retira espaços em branco de uma string.
- * @param str: Ponteiro para a string. 
- * @return : Ponteiro para a string sem espaços em branco. 
+ * Verifica se a palavra fonte contém algum caractere presente em digitos.
+ * @param digitos: Ponteiro para uma sequencia de caracteres.
+ * @param fonte: Ponteiro para uma palavra. 
+ * @return bool: 1 se algum caractere está presente em fonte ou 0 caso contrário.
  **/
-char *trim(char *str);
+int contains(char *digitos, char *fonte);
 
 /**
- * Converte uma string para o formato minúsculo.
+ * Verifica se uma palavra é valida (i.e, está no formato do teclato T9).
  * @param str: Ponteiro para uma palavra. 
+ * @return bool: 1 se valida ou 0 caso contrário.
  **/
-void toLowerCase(char *str);
+int palavraValida(char *p);
 
-#endif /* __UTILS__ */ 
+#endif /*  __UTILS__  */ 
