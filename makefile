@@ -12,10 +12,6 @@ $(MAIN): t9.o trie.o utils.o
 %.o: %.c
 	gcc -c $< $(CFLAGS)
 
-# Compila e roda o programa
-run: $(MAIN)
-	./t9
-
 # Remove *.o
 clean:
 	rm -f *.o *.gch
