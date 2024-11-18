@@ -45,15 +45,15 @@ int main(int argc, char **argv) {
 
   fclose(dicionario);
 
-  char anterior[MAX_TAM * 2], input[MAX_TAM * 2];
+  char anterior[MAX_TAM * 2], input[MAX_TAM];
   char *busca;
   scanf("%s", input);
-  while (strlen(input) != 1 || input[0] != '0') {
+  while (strlen(input) != 1 || input[0] != ZERO) {
 
     if ( !palavraValida(input) ) {
       printf("entrada invalida\n");
     } else {
-      if ( input[0] == '#' ) busca = strcat(anterior, input);
+      if ( input[0] == HASHTAG ) busca = strcat(anterior, input);
       else busca = input;
       
       char *word = buscaPalavra(&arv, busca);

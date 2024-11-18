@@ -10,7 +10,7 @@
  * Função que cria um novo nodo na Trie. Pode conter
  * uma palavra ou não.
  *
- * @param palavra: Ponteiro para palavra a ser inserida. 
+ * @param palavra: Ponteiro para palavra a ser inserida ou NULL. 
  * @return ApNodo: Novo nodo. 
  **/
 static ApNodo criaNodo(const char *palavra) {
@@ -43,7 +43,7 @@ static Trie insereLista(Trie *raiz, char *palavra) {
     ApNodo anterior = NULL;
     while (atual != NULL) {
         anterior = atual;
-        atual = atual->prox[HASHTAG];
+        atual = atual->prox[HASHTAG_POS];
     }
         
     atual = criaNodo(palavra);
@@ -53,7 +53,7 @@ static Trie insereLista(Trie *raiz, char *palavra) {
     }
 
     if (anterior != NULL)
-        anterior->prox[HASHTAG] = atual;
+        anterior->prox[HASHTAG_POS] = atual;
     return *raiz; 
 }
 
@@ -75,7 +75,7 @@ static Trie insereR(Trie *raiz, char *palavra, char *c) {
         }
     }
 
-    if (*c == '\0') { 
+    if (*c == WORD_END) { 
         if ((*raiz)->palavra != NULL) { /* Verifica se já existe uma palavra no nodo atual. */
             *raiz = insereLista(raiz, palavra); 
             if (*raiz == NULL)
@@ -106,13 +106,13 @@ static char *buscaR(Trie *raiz, char *c) {
     if (*raiz == NULL)
 	    return NULL;
 
-    if (*c == '\0')
+    if (*c == WORD_END)
         return (*raiz)->palavra;
 
-    if (*c == '#')
-        return buscaR(&(*raiz)->prox[HASHTAG], ++c);
+    if (*c == HASHTAG)
+        return buscaR(&(*raiz)->prox[HASHTAG_POS], ++c);
 
-    int index = *c - '0';  
+    int index = *c - ZERO;  
     return buscaR(&(*raiz)->prox[index], ++c);
 }
 
