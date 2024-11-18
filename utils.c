@@ -42,6 +42,10 @@ int charToDigit(char c)
         case 'z':
             return 9; 
         default:
+             /* Isso eh inutil, uma vez que o caractere 
+              * sempre estara no intervalo [a-z], mas
+              * o compilador acusa erro se nao tiver.
+              */
             return -1;
     }
 }
@@ -58,7 +62,7 @@ int contains(char *digitos, char *fonte)
 int palavraValida(char *p) {
     if (contains("?!,./:;@$&*%^()-_+=|[]{}\"\'\abcdefghijklmnopqrstuvwxyz01ABCDEFGHIJKLMNOPQRSTUVWXYZ ", p)) 
         return 0;
-    if ( p[0] == '#' && contains("23456789", p) )
+    if ( p[0] == HASHTAG && contains("23456789", p) )
         return 0;
     return 1;
 }

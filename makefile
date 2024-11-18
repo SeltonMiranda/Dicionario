@@ -23,7 +23,7 @@ purge:
 # Cria um arquivo tar.gz para entrega do trabalho
 entrega: clean
 	@mkdir $(ENTREGA)
-	@cp *.c *.h makefile $(ENTREGA)
+	@cp *.c *.h makefile LEIAME $(ENTREGA)
 	@tar czvf $(ENTREGA).tar.gz $(ENTREGA)
 	@rm -rf $(ENTREGA)
 	@echo "Arquivo $(ENTREGA).tar.gz criado\n"

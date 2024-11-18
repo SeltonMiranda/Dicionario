@@ -7,6 +7,9 @@
 #ifndef __UTILS__
 #define __UTILS__
 
+#define HASHTAG '#'
+#define ZERO '0'
+
 /**
  * Converte um caractere para o respectivo número do teclado T9.
  * @param c: Caractere de uma palavra. 
